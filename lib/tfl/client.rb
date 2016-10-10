@@ -45,7 +45,7 @@ module TFL
       cards.each do |c|
         card = TFL::Card.new
         card.id            = c.attributes['href'].value.to_s[/\/Card\/View\?pi=(.*)/,1]
-        card.network       = c.css('h3.current-nickname span.sr-only').text.to_s[/(MasterCard|Visa)/]
+        card.network       = c.css('h3.current-nickname span.sr-only').text.to_s[/(MasterCard|Visa|American Express)/]
 
         card.last_4_digits = if c.css('span[data-pageobject="view-card-last4digits"]').empty? then
           c.css('span.view-card-nickname').text.to_s[/\d{4}/]
